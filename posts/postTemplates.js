@@ -11,6 +11,11 @@ handlebars.registerHelper('marked', function(string) {
 	var safeString = marked(string);
 	return new handlebars.SafeString(safeString);
 });
+handlebars.registerHelper('niceDate',function(date) {
+	if(!date) return '';
+	return date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
+});
+
 
 function loadTemplate(name) {
 	return fs.readFileSync(__dirname + '/views/' + name, 'utf8');

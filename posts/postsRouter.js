@@ -13,8 +13,6 @@ mongo.connect(url, function(err, db) {
 	router.get('/', function(req, res) {
 		posts.find().sort({published: -1}).toArray(function(err, posts) {
 			if(err) res.sendStatus(404);
-			console.dir(posts);
-			console.log(template.postsList({posts: posts}));
 			res.send(template.postsList({posts: posts}));
 		});
 	});
@@ -22,8 +20,6 @@ mongo.connect(url, function(err, db) {
 	router.get('/:slug', function(req, res) {
 		posts.findOne({slug: req.params.slug}, {limit: 1}, function(err, post) {
 			if(err) res.sendStatus(404);
-			console.dir(post);
-			console.log(template.postPage(post));
 			res.send(template.postPage(post));
 		});
 	});
