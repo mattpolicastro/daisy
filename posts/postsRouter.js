@@ -11,7 +11,7 @@ mongo.connect(url, function(err, db) {
 	var posts = db.collection('posts');
 	
 	router.get('/', function(req, res) {
-		posts.find().toArray(function(err, posts) {
+		posts.find().sort({published: -1}).toArray(function(err, posts) {
 			if(err) res.sendStatus(404);
 			console.dir(posts);
 			console.log(template.postsList({posts: posts}));
