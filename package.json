@@ -9,6 +9,7 @@
     "handlebars": "^3.0.3",
     "handlebars-layouts": "^2.0.2",
     "marked": "^0.3.3",
+    "moment": "^2.10.3",
     "mongodb": "^2.0.33"
   },
   "devDependencies": {},
