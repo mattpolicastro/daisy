@@ -14,7 +14,7 @@ mongo.connect(url, function(err, db) {
 		posts.find().toArray(function(err, posts) {
 			if(err) res.sendStatus(404);
 			console.dir(posts);
-			console.log(template.postList({posts: posts}));
+			console.log(template.postsList({posts: posts}));
 			res.send(template.postsList({posts: posts}));
 		});
 	});
