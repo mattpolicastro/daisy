@@ -13,7 +13,8 @@ handlebars.registerHelper('marked', function(string) {
 });
 handlebars.registerHelper('niceDate',function(date) {
 	if(!date) return '';
-	return date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
+	return typeof(date);
+	//return date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
 });
 
 
