@@ -3,9 +3,9 @@
 @import "neat/neat";
 @import "base/base";
 
-@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Book", 400);
-@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Bold", 700);
-@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Heavy", 800);
+@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Book", 400, $file-formats: eot svg woff);
+@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Bold", 700, $file-formats: eot svg woff);
+@include font-face("Cooper Hewitt", "/fonts/CooperHewitt/CooperHewitt-Heavy", 800, $file-formats: eot svg woff);
 
 html {
 	min-height: 100%;
