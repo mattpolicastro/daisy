@@ -17,7 +17,7 @@ mongo.connect(url, function(err, db) {
 	
 	router.get('/posts', function(req, res) {
 		posts.find().sort({published: -1}).toArray(function(err, posts) {
-			if(post != null) {
+			if(posts != null) {
 				res.send(template.postsList({posts: posts}));
 			} else {
 				res.send(template.fourOhFour());
