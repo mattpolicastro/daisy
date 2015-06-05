@@ -6,6 +6,7 @@ var moment = require('moment');
 
 handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('layout', fs.readFileSync(__dirname + '/layout.hbs', 'utf8'));
+handlebars.registerPartial('header', fs.readFileSync(__dirname + '/header.hbs', 'utf8'));
 
 handlebars.registerHelper('marked', function(string) {
 	if(!string) return '';
