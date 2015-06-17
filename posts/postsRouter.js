@@ -55,7 +55,6 @@ mongo.connect(url, function(err, db) {
 		});
 		
 		posts.find({}, {sort: {published: -1}, limit: 20}).forEach(function(post){
-			console.log(post.title + ' -- ' + post.published);
 			feed.item({
 				title: post.title,
 				description: post.content,
