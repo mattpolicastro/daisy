@@ -44,7 +44,7 @@ mongo.connect(url, function(err, db) {
 		});
 	});
 	
-	router.get('/feed.xml', function(req, res) {
+	router.get('/rss', function(req, res) {
 		var feed = new RSS({
 			title: "All posts from www.mattpolicastro.com",
 			description: "All posts, updates, and more from @mattpolicastro",
@@ -54,18 +54,20 @@ mongo.connect(url, function(err, db) {
 			pubDate: new Date()
 		});
 		
-		posts.find({}, {sort: {published: -1}, limit: 20}).forEach(function(post){
-			feed.item({
-				title: post.title,
-				description: post.content,
-				url: 'http://www.mattpolicastro.com/posts/' + post.slug + '/',
-				guid: post._id,
-				date: post.published
-			})
+		posts.find().sort({published: -1}).toArray(function(err, posts){
+			posts.forEach(function(post){
+				feed.item({
+		 			title: post.title,
+		 			description: post.content,
+		 			url: 'http://www.mattpolicastro.com/posts/' + post.slug + '/',
+		 			guid: post._id,
+		 			date: post.published					
+				});
+			});
+			
+			res.type('application/rss+xml');
+			res.send(feed.xml({indent: true}));
 		});
-		
-		res.set('Content-Type', 'application/rss+xml');
-		res.send(feed.xml({indent: true}));
 	});
 	
 	router.use(function(req, res){
