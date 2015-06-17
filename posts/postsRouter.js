@@ -1,6 +1,8 @@
 var mongo = require('mongodb').MongoClient;
 var express = require('express');
+var RSS = require('rss');
 var router = express.Router();
+var marked = require('marked');
 
 var template = require('./postTemplates');
 
@@ -40,6 +42,35 @@ mongo.connect(url, function(err, db) {
 			if(err) res.sendStatus(404);
 			res.send(template.postPage(bio));
 		});
+	});
+	
+	router.get('/feed.xml', function(req, res) {
+		var feed = new RSS({
+			title: "All posts from www.mattpolicastro.com",
+			description: "All posts, updates, and more from @mattpolicastro",
+			feed_url: "http://www.mattpolicastro.com/feed.xml",
+			site_url: "http://www.mattpolicastro.com",
+			language: "en",
+			pubDate: new Date()
+		});
+		
+		posts.find({}, {sort: {published: -1}, limit: 20}).forEach(function(post){
+			console.log(post.title + ' -- ' + post.published);
+			feed.item({
+				title: post.title,
+				description: post.content,
+				url: 'http://www.mattpolicastro.com/posts/' + post.slug + '/',
+				guid: post._id,
+				date: post.published
+			})
+		});
+		
+		res.set('Content-Type', 'application/rss+xml');
+		res.send(feed.xml({indent: true}));
+	});
+	
+	router.use(function(req, res){
+		res.send(template.fourOhFour());
 	});
 	
 });
