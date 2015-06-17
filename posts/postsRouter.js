@@ -44,7 +44,7 @@ mongo.connect(url, function(err, db) {
 		});
 	});
 	
-	router.get('/rss', function(req, res) {
+	router.get('/feed.xml', function(req, res) {
 		var feed = new RSS({
 			title: "All posts from www.mattpolicastro.com",
 			description: "All posts, updates, and more from @mattpolicastro",
