@@ -60,7 +60,7 @@ mongo.connect(url, function(err, db) {
 		 			title: post.title,
 		 			description: post.content,
 		 			url: 'http://www.mattpolicastro.com/posts/' + post.slug + '/',
-		 			guid: post._id,
+		 			guid: post._id.str,
 		 			date: post.published					
 				});
 			});
