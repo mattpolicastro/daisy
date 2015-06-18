@@ -8,6 +8,8 @@ var template = require('./postTemplates');
 
 var url = String(process.env.MONGO_URL || 'mongodb://localhost:27017/dumdum/');
 
+router.use(express.static('public'));
+
 mongo.connect(url, function(err, db) {
 	
 	var posts = db.collection('posts');

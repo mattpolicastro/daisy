@@ -7,8 +7,8 @@ var router = require('./posts/postsRouter');
 // Initialisation
 var app = express();
 var server = http.createServer(app);
-app.use(express.static('public'));
-	
+
+app.use(express.static('public'));	
 app.use('/', router);
 
 var port = Number(process.env.PORT || 3000);
