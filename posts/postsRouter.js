@@ -55,17 +55,16 @@ mongo.connect(url, function(err, db) {
 			language: "en",
 			pubDate: new Date()
 		});
-		
+
 		posts.find().sort({published: -1}).toArray(function(err, posts){
 			posts.forEach(function(post){
 				feed.item({
 		 			title: post.title,
-		 			description: post.content,
-		 			url: 'http://www.mattpolicastro.com/posts/' + post.slug + '/',
+		 			description: marked(post.content),
+		 			url: 'http://www.mattpolicastro.com/posts/' + post.slug,
 		 			guid: post._id.toString(),
 		 			date: post.published
 				});
-				console.log(post._id.toString());
 			});
 			
 			res.type('application/rss+xml');
