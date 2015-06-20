@@ -22,7 +22,7 @@ mongo.connect(url, function(err, db) {
 	router.get('/posts', function(req, res) {
 		posts.find().sort({published: -1}).toArray(function(err, posts) {
 			if(posts != null) {
-				res.send(template.postsList({posts: posts}));
+				res.send(template.postsList({title: 'Posts', posts: posts}));
 			} else {
 				res.send(template.fourOhFour());
 			}
