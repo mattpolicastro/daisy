@@ -7,9 +7,9 @@
 		{{#each posts}}
 		<div class="post">
 			<div class="container {{type}}">
-				<div class="main writing">
+				<article class="main writing">
 					<h2><a href="/posts/{{slug}}">{{title}}</a></h2>
-					<small title="Published on">{{listDate published}}</small>
+					<small><time datetime="{{roboDate published}}">{{listDate published}}</time></small>
 					{{marked content}}
 				</div>
 			</div>

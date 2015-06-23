@@ -1,14 +1,14 @@
 {{#extend "layout"}}
 	{{#content "body"}}
-		<div class="container {{type}}">
+		<article class="container {{type}}">
 			<div id="lede" class="main">			
 				<h1>{{title}}</h1>
-				<p title="Published on">{{scriptDate published}}</p>
+				<time datetime="{{roboDate published}}">{{scriptDate published}}</time>
 			</div>
-			<article class="main writing">
+			<div class="main writing">
 				{{marked content}}
 				<a href="/posts" id="back"><small>Back to posts</small></a>
-			</article>
-		</div>
+			</div>
+		</article>
 	{{/content}}
 {{/extend}}

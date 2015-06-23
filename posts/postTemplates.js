@@ -16,18 +16,22 @@ handlebars.registerHelper('marked', function(string) {
 	return new handlebars.SafeString(safeString);
 });
 
-handlebars.registerHelper('listDate',function(date) {
+handlebars.registerHelper('listDate', function(date) {
 	if(!date) return '';
-	//var niceDate = date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
 	var momentDate = moment(date);
 	return momentDate.format('MMM D, YYYY');
 });
 
-handlebars.registerHelper('scriptDate',function(date) {
+handlebars.registerHelper('scriptDate', function(date) {
 	if(!date) return '';
-	//var niceDate = date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
 	var momentDate = moment(date);
 	return momentDate.format('MMMM Do, YYYY');
+});
+
+handlebars.registerHelper('roboDate', function(date) {
+	if(!date) return '';
+	var momentDate = moment(date);
+	return momentDate.format('YYYY-MM-DD HH:mm:ssZ');
 });
 
 function loadTemplate(name) {
