@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/mattpolicastro
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.mattpolicastro.com
+  * I am mattpolicastro (https://keybase.io/mattpolicastro) on keybase.
+  * I have a public key with fingerprint 86BE D49A 8860 5877 179F  76C3 665B 63C7 E280 3D4C
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "86bed49a88605877179f76c3665b63c7e2803d4c",
+            "host": "keybase.io",
+            "key_id": "665b63c7e2803d4c",
+            "kid": "0101e0ede823cfe733d9cf1e22433f52e8a2116aa437db632f555705224a7479b4b00a",
+            "uid": "81b196a2f532e8e2aff2dd31388dc800",
+            "username": "mattpolicastro"
+        },
+        "revoke": {
+            "sig_ids": [
+                "15b9ffadf798a8575386c7eebab8a5d4a2537b46b1937fb4cfe381ea4deae9940f"
+            ]
+        },
+        "service": {
+            "hostname": "www.mattpolicastro.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1436494729,
+    "expire_in": 157680000,
+    "prev": "bcf846cbda7ea0d0c08d3ea9fdc8e8f0ff5e2e3afcc376dd66106d8b0c2a0dbe",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.20
+Comment: https://keybase.io/crypto
+
+yMJpAnicbZJdbBVFFMdvaRG5SNIIMdGK0YnQGEozu7M7M3tTDJgKuU/qAzUg5mY+
+zpRNe3eve7et19KKwEUbg0HDRyIQbcAHHghRaUw1fNjUAH6RWKASicZootEHY1BT
+DVFnb/CBxKfNzPmf3/mf/8704uZcvkm8NF46Gt2Yafrkw+MDuQ1vrBwbRjLWNVQY
+Rn3Q+Jgw6oWkkoRRigqIUwnaCwTnFPucMYcFhlFFKPUlJYqByzHRnkIdaEtczTos
+RooqdIaxvbOHUqjt7f/o+xoF7GAHMGjgLlEGGCE6UMYB1/UIMb4LXLiOQ4XwCNMW
+4Rrf9xn2bV0wjwXSkxgLixto4LgjnYAKqyK2FVxhjKs1cQjnWnGMM2EVkkiUwarL
+Ik0rcX+oRDVNYjTSgRIYjPsgy6Ea9lrrVVR4Cjm+DIwR2rCAC+4zn3BqVwEpJBe+
+9oTrEyY9akcTZqRn9yDcAeFpEBAEHjboacu2cwdD1YBnWd30MDQ01Hmrj04Vl63P
+ShKnsYr7rWaLLRcye2mt0ugBWbpJK8kw0vaX2YZBSKphHKGCY5UqDTO84xHqBR5z
+gw4Ez1bCBEphpvAZtWlgnI2BQYuUynCPKqkFA4E1VphrAiIwNjbgBhvjgwtEGKUI
+o1pT6mCqucTKtXIJKNvvmSi2bAtNRa9l2ggjkQ4kgEamzm5uyTXlc7fNn5e9ulx+
+Yet/b7FtcsE/tdOzJ2/MwPvFnZWHtqGjm84///3w/PqZ2a7i+to7L1wXTYeg8Nsl
+OXOt7eSYOzrx5Z41su3EKO6/+Ovl9g8ufvp7cd/44bEjmyfmymrtuSei1c352mi5
+67Xre3r2566Wc8WP1z6pHs/v2ts/PBa8vvr++vL3Jpb9tezCWz/O/RBMLWltNj31
+j7Z/sXtu6aafNu77fJKVVv68ZGT2uyv3HN7Vvvyrdc+hYvf6VnFow7rJyfzXF7qv
+vXh858OLFoq/x1s66/V3j0V/ovaSW5lZ8XL3/nk7/khpzwMHt94V3v3gK9vuu33j
+t4/d+83uqZalXSvumH70zc9W8bMHXz3wS3Lq7TvN3tPTj1yN65f/Bd8OSls=
+=n3rR
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mattpolicastro
+
+==================================================================
