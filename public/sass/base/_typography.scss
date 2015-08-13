@@ -62,6 +62,17 @@ picture {
   max-width: 100%;
 }
 
+blockquote {
+	background-color: $light-gray;
+	//@include linear-gradient(to right, white 0%, $light-gray 5%, $fallback: $light-gray);
+	padding: ($spacing * 3.5) ($spacing * 4);
+	margin: 0;
+	font-style: italic;
+	p:not(:first-child) {
+		text-indent: $spacing * 4;
+	}
+}
+
 pre {
 	padding: $spacing ($spacing * 2) ($spacing * 2);
 	background: $light-gray;
