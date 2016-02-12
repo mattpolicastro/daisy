@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.define "web" do |web|
     web.vm.box = "ubuntu/trusty64"
-    web.vm.network "forwarded_port", guest: 80, host: 8080
+    web.vm.network "forwarded_port", guest: 3000, host: 3000
     # web.vm.network "private_network", ip: "192.168.0.1"
     web.vm.synced_folder "..", "/vagrant"
     web.vm.provider "virtualbox" do |vb|
