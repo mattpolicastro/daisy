@@ -8,7 +8,7 @@ import * as config from "config";
 // Open database connection
 var mongoUrl =
 mongoose.connect(
-	(config.MONGO_URL || 'mongodb://localhost:27017/mattpolicastro.com'),
+	(config.MONGO_URL || 'mongodb://localhost:27017/daisy'),
 	function(err) {
 		if err throw err;
 	}
