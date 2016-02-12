@@ -1,17 +1,45 @@
-// Imports
+// Node modules
 var express = require('express');
-var http = require('http');
+var mongoose = require('mongoose');
 
-var router = require('./posts/postsRouter');
+// Global constants
+import * as config from "config";
 
-// Initialisation
-var app = express();
-var server = http.createServer(app);
+// Open database connection
+var mongoUrl =
+mongoose.connect(
+	(config.MONGO_URL || 'mongodb://localhost:27017/mattpolicastro.com'),
+	function(err) {
+		if err throw err;
+	}
+);
 
-app.use(express.static('public'));	
-app.use('/', router);
+// Handle errors and initialise app
+var db = mongoose.connection;
+db.on('error', function(err) {
+	// This is a bad way to handle errors; need to fix
+	if err throw err;
+});
+db.once('open', function() {
+	// Initalise Express app
+	var app = express();
 
-var port = Number(process.env.PORT || 3000);
-server.listen(port, function () {
-	console.log('DumDum now started on port %s', server.address().port);
+	// Add static dir of public files
+	app.use(express.static('public'));
+
+	// Load handlers/routers
+	var = require('routes/index')
+	var = require('routes/posts');
+
+	// Mount handlers/routers
+	app.use('/', index);
+	app.use('/posts', posts);
+
+	// Default to localhost:3000
+	const PORT = config.PORT || 3000;
+	app.listen(PORT, function(err) {
+		if err throw err;
+		console.log('Now listening on port %s', PORT);
+	});
+
 });
