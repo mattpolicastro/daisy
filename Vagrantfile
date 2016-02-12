@@ -15,12 +15,15 @@ Vagrant.configure(2) do |config|
   config.vm.define "web" do |web|
     web.vm.box = "ubuntu/trusty64"
     web.vm.network "forwarded_port", guest: 3000, host: 3000
+    web.landrush.enabled = true
+    web.vm.hostname = "web.vagrant.dev"
     # web.vm.network "private_network", ip: "192.168.0.1"
-    web.vm.synced_folder "..", "/vagrant"
+    web.vm.synced_folder ".", "/vagrant"
     web.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
       vb.cpus = "1"
     end
+    web.vm.provision "shell", path: "vagrant/web_bootstrap.sh"
     # web.vm.provision "ansible" do |ansible|
     #   ansible.playbook = "web_playbook.yml"
     # end
@@ -29,12 +32,15 @@ Vagrant.configure(2) do |config|
   config.vm.define "db" do |db|
     db.vm.box = "ubuntu/trusty64"
     db.vm.network "forwarded_port", guest: 27017, host: 27017
+    db.landrush.enabled = true
+    db.vm.hostname = "db.vagrant.dev"
     # db.vm.network "private_network", ip: "192.168.0.2"
     db.vm.synced_folder ".", "/vagrant", disabled: true
     db.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
       vb.cpus = "1"
     end
+    db.vm.provision :shell, path: "vagrant/db_bootstrap.sh"
     # db.vm.provision "ansible" do |ansible|
     #   # ansible.playbook = "web_playbook.yml"
     # end
