@@ -1,45 +1,35 @@
-// Global constants
-var config = require('./config.js');
+'use strict';
+/*
+ * ~Daisy~
+ * Borrows liberally from https://github.com/madhums/node-express-mongoose-demo/
+ */
 
-// Node modules
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
+const config = require('./config/config');
 
-// Open database connection
-var mongoUrl =
-mongoose.connect(
-	(config.MONGO_URL || 'mongodb://db.vagrant.dev:27017/daisy'),
-	function(err) {
+// Defaults/initialise the app
+const url = config.MONGO_URL || 'mongodb://db.vagrant.dev:27017/daisy';
+const port = config.PORT || 3000;
+const app = express();
+
+// Configure the app
+require('./config/express')(app);
+require('./config/routes')(app);
+
+// Open database connection, handlers, and open the app
+connect()
+	.on('error', console.log)
+	.on('disconnected', connect)
+	.once('open', listen);
+
+function connect() {
+	return mongoose.connect(url).connection;
+}
+
+function listen() {
+	app.listen(port, function(err) {
 		if (err) throw err;
-	}
-);
-
-// Handle errors and initialise app
-var db = mongoose.connection;
-db.on('error', function(err) {
-	// This is a bad way to handle errors; need to fix
-	if (err) throw err;
-});
-db.once('open', function() {
-	// Initalise Express app
-	var app = express();
-
-	// Add static dir of public files
-	app.use(express.static('public'));
-
-	//// Load handlers/routers
-	//var = require('routes/index')
-	//var = require('routes/posts');
-
-	//// Mount handlers/routers
-	//app.use('/', index);
-	//app.use('/posts', posts);
-
-	// Default to localhost:3000
-	const PORT = config.PORT || 3000;
-	app.listen(PORT, function(err) {
-		if (err) throw err;
-		console.log('Now listening on port %s', PORT);
+		console.log('Now listening on port', port);
 	});
-
-});
+}
