@@ -24,12 +24,13 @@ connect()
 	.once('open', listen);
 
 function connect() {
+	console.log('Opening database connection...')
 	return mongoose.connect(url).connection;
 }
 
 function listen() {
 	app.listen(port, function(err) {
 		if (err) throw err;
-		console.log('Now listening on port', port);
+		console.log('Now listening on port %s!', port);
 	});
 }
