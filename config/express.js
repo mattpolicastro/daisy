@@ -31,7 +31,9 @@ function configExpress(app) {
         if (!date) { let date = Date.now(); }
         return moment(date).format('YYYY-MM-DD HH:mm:ssZ');
       }
-    }
+    },
+    layoutsDir: 'views/hbs-layouts',
+    partialsDir: 'views/hbs-partials'
   })
 
   app.engine('handlebars', hbs.engine);
