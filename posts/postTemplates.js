@@ -6,16 +6,6 @@ var moment = require('moment');
 
 moment.locale('en-us');
 
-handlebars.registerHelper(layouts(handlebars));
-handlebars.registerPartial('layout', fs.readFileSync(__dirname + '/layout.hbs', 'utf8'));
-handlebars.registerPartial('header', fs.readFileSync(__dirname + '/header.hbs', 'utf8'));
-
-handlebars.registerHelper('marked', function(string) {
-	if(!string) return '';
-	var safeString = marked(string);
-	return new handlebars.SafeString(safeString);
-});
-
 handlebars.registerHelper('listDate', function(date) {
 	if(!date) return '';
 	var momentDate = moment(date);
