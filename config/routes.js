@@ -1,8 +1,6 @@
 'use strict';
 
-module.exports = configRoutes;
-
-function configRoutes(app) {
+module.exports = function(app) {
 
   // Load and mount handlers/routers
   app.use('/', require('../routes/index'));

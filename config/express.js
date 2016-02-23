@@ -5,9 +5,7 @@ const exphbs = require('express-handlebars');
 const marked = require('marked');
 const hbscfg = require('./handlebars.js');
 
-module.exports = configExpress;
-
-function configExpress(app) {
+module.exports = function(app) {
   // Add static dir of public files
   app.use(express.static('public'));
 
