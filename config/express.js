@@ -17,6 +17,7 @@ function configExpress(app) {
 
   // Add Handlebars as the view engine
   var hbs = exphbs.create({
+    extname: '.hbs',
     defaultLayout: 'main',
     helpers: {
       marked: function(string) {
@@ -36,8 +37,8 @@ function configExpress(app) {
     partialsDir: 'views/hbs-partials'
   })
 
-  app.engine('handlebars', hbs.engine);
+  app.engine('.hbs', hbs.engine);
+  app.set('view engine', '.hbs');
   app.enable('view cache');
-  app.set('view engine', 'handlebars');
 
 }
