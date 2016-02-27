@@ -11,13 +11,12 @@
     "handlebars-layouts": "^2.0.2",
     "marked": "^0.3.3",
     "moment": "^2.10.3",
-    "mongodb": "^2.0.33",
-    "mongoose": "^4.4.3",
-    "rss": "^1.1.1"
+    "pg": "^4.5.1",
+    "pg-hstore": "^2.3.2",
+    "rss": "^1.1.1",
+    "sequelize": "^3.19.3"
   },
-  "devDependencies": {
-    "mongo-fixtures": "^1.0.1"
-  },
+  "devDependencies": {},
   "scripts": {},
   "author": "",
   "license": "ISC"
