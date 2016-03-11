@@ -5,8 +5,8 @@
  */
 
 const express = require('express');
-const mongoose = require('mongoose');
-const config = require('./config/config');
+const db = require(__dirname + '/models');
+const config = require(__dirname + '/config/config');
 
 // Defaults/initialise the app
 const url = config.MONGO_URL || 'mongodb://db.vagrant.dev:27017/daisy';
@@ -15,22 +15,14 @@ const app = express();
 
 // Configure the app
 require('./config/express')(app);
-require('./config/routes')(app);
+//require('./config/routes')(app);
 
 // Open database connection, handlers, and open the app
-connect()
-	.on('error', console.log)
-	.on('disconnected', connect)
-	.once('open', listen);
-
-function connect() {
-	console.log('Opening database connection...')
-	return mongoose.connect(url).connection;
-}
-
-function listen() {
+db.sequelize.sync().then(function() {
 	app.listen(port, function(err) {
 		if (err) throw err;
 		console.log('Now listening on port %s!', port);
 	});
-}
+}).catch(function(err){
+	console.log(err);
+});

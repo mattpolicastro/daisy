@@ -1,3 +1,4 @@
 node_modules/*
 public/.sass-cache/*
 .vagrant
+config/config.js
