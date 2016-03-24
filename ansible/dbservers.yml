@@ -1,0 +1,7 @@
+---
+- name: bootstrap dbservers
+  hosts: dbservers
+  become: yes
+  become_user: '{{ ssh_root_user }}'
+  roles:
+    - dbservers

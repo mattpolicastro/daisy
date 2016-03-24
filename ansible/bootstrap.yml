@@ -1,0 +1,24 @@
+---
+# Create new user account using root
+- name: bootstrap ssh
+  hosts: '{{ hosts }}'
+  remote_user: '{{ ssh_root_user }}'
+  become: yes
+  tasks:
+    - fail: msg="'ssh_new_user' is undefined"
+      when: ssh_new_user is undefined
+    - name: create user account ({{ ssh_new_user }})
+      user: name={{ ssh_new_user }} shell=/bin/bash groups=sudo password={{ ssh_new_user_password }}
+      when: ssh_new_user is defined
+      register: create_ssh_new_user
+    - name: add ssh key ({{ ssh_new_user }})
+      authorized_key: user={{ ssh_new_user }} key="{{ lookup('file', ssh_config_pubkey) }}"
+      when: create_ssh_new_user|success and ssh_config_pubkey is defined
+      register: ssh_pub_key_added
+
+# Check configurations
+- name: secure root and ssh
+  hosts: '{{ hosts }}'
+  become: yes
+  roles:
+    - common

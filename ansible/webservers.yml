@@ -1,0 +1,7 @@
+---
+- name: bootstrap webservers
+  hosts: webservers
+  become: yes
+  become_user: '{{ ssh_root_user }}'
+  roles:
+    - webservers

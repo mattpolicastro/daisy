@@ -1,0 +1,4 @@
+---
+- name: install node.js + npm
+  include: node_install.yml
+  register: node_install

@@ -1,0 +1,2 @@
+- name: create daisy database
+  postgresql_db: name={{ postgres_db_name }} login_user={{ postgres_login_name }}

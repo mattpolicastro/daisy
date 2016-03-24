@@ -1,0 +1,12 @@
+- name: apt postgres
+  apt:
+    name: postgresql
+    state: present
+    update_cache: yes
+    cache_valid_time: 6000
+- name: apt postgres-contrib
+  apt:
+    name: postgresql-contrib
+    state: present
+    update_cache: yes
+    cache_valid_time: 6000

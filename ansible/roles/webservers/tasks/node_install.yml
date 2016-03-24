@@ -1,0 +1,32 @@
+# Follows nodesource manual install:
+# https://github.com/nodesource/distributions#installation-instructions
+# Also, as SNI is wonky in the guest's python install, using shell to add the
+# apt keys. Background available here:
+# https://github.com/nodesource/distributions#installation-instructions
+- name: fetch nodesource apt_key
+  shell: curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key >> {{ nodesource_key_dest }}
+  register: apt_key_fetch
+- name: add nodesource apt_key
+  shell: apt-key add {{ nodesource_key_dest }}
+  register: apt_key_add
+  when: apt_key_fetch|success
+- name: add deb repo for nodejs {{ nodejs_version }}
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_{{ nodejs_version }} {{ansible_distribution_release }} main"
+    state: present
+- name: add deb-src repo for nodejs {{ nodejs_version }}
+  apt_repository:
+    repo: "deb-src https://deb.nodesource.com/node_{{ nodejs_version }} {{ansible_distribution_release }} main"
+    state: present
+- name: install nodejs {{ nodejs_version }}
+  apt:
+    name: nodejs={{ nodejs_version|regex_replace('x', '') }}*
+    state: present
+    update_cache: yes
+    cache_valid_time: 30000
+- name: install nodejs build-essential
+  apt:
+    name: build-essential
+    state: present
+    update_cache: yes
+    cache_valid_time: 30000

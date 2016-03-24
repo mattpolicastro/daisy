@@ -1,0 +1,3 @@
+---
+nodejs_version: "5.x"
+nodesource_key_dest: /tmp/nodesource.key

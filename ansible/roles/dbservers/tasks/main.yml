@@ -1,0 +1,7 @@
+---
+- name: install postgres
+  include: postgres_install.yml
+  register: postgres_install
+- name: config postgres
+  include: postgres_config.yml
+  register: postgres_config
