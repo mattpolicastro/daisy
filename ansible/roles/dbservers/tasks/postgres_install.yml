@@ -3,10 +3,10 @@
     name: postgresql
     state: present
     update_cache: yes
-    cache_valid_time: 6000
+    cache_valid_time: '{{ apt_cache_time }}'
 - name: apt postgres-contrib
   apt:
     name: postgresql-contrib
     state: present
     update_cache: yes
-    cache_valid_time: 6000
+    cache_valid_time: '{{ apt_cache_time }}'

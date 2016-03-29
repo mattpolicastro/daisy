@@ -23,10 +23,10 @@
     name: nodejs={{ nodejs_version|regex_replace('x', '') }}*
     state: present
     update_cache: yes
-    cache_valid_time: 30000
+    cache_valid_time: '{{ apt_cache_time }}'
 - name: install nodejs build-essential
   apt:
     name: build-essential
     state: present
     update_cache: yes
-    cache_valid_time: 30000
+    cache_valid_time: '{{ apt_cache_time }}'
