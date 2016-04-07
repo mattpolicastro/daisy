@@ -5,6 +5,7 @@
   remote_user: '{{ ssh_root_user }}'
   become: yes
   tasks:
+    - debug: msg="The current user is {{ ansible_user }}, {{ ansible_env.USER }}, {{ ansible_user_id }}"
     - fail: msg="'ssh_new_user' is undefined"
       when: ssh_new_user is undefined
     - name: create user account ({{ ssh_new_user }})
@@ -20,5 +21,7 @@
 - name: secure root and ssh
   hosts: '{{ hosts }}'
   become: yes
+  pre_tasks:
+    - debug: msg="The current user is {{ ansible_user }}, {{ ansible_env.USER }}, {{ ansible_user_id }}"
   roles:
     - common

@@ -6,9 +6,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision "bootstrap", type: "ansible" do |ansible|
     ansible.ask_vault_pass = true
     ansible.extra_vars = {
-      hosts: "all"
+      hosts: "all",
+      # Force vagrant on first ssh to box
+      ansible_user: "vagrant"
     }
-    ansible.force_remote_user = "true"
     ansible.playbook = "ansible/bootstrap.yml"
     ansible.raw_arguments = ["--extra-vars=@ansible/config.json"]
   end
