@@ -1,3 +1,4 @@
+---
 - name: create {{ postgres_db_name }} database
   postgresql_db:
     name: '{{ postgres_db_name }}'
@@ -7,3 +8,4 @@
   postgresql_user:
     db: '{{ postgres_db_name }}'
     name: '{{ postgres_app_user }}'
+  when: app_system_user | success

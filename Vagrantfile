@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
       vb.memory = "512"
       vb.cpus = "1"
     end
-    web.vm.provision "ansible" do |ansible|
+    web.vm.provision "ansible", run: "always" do |ansible|
       ansible.ask_vault_pass = true
       ansible.groups = {
         "webservers" => "web",
@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
       vb.memory = "512"
       vb.cpus = "1"
     end
-    db.vm.provision "ansible" do |ansible|
+    db.vm.provision "ansible", run: "always" do |ansible|
       ansible.ask_vault_pass = true
       ansible.groups = {
         "dbservers" => "db"

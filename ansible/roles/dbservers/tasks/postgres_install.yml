@@ -1,3 +1,4 @@
+---
 - name: apt postgres
   apt:
     name: postgresql

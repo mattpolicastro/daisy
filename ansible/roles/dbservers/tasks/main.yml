@@ -13,3 +13,6 @@
   become_user: '{{ postgres_admin_user }}'
   include: postgres_config.yml
   register: postgres_config
+- name: create {{ postgres_app_user }} system user
+  user: name={{ postgres_app_user }} shell=/bin/bash password={{ postgres_app_user_password }}
+  register: app_system_user
