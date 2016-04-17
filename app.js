@@ -9,7 +9,6 @@ const db = require(__dirname + '/models');
 const config = require(__dirname + '/config/config');
 
 // Defaults/initialise the app
-const url = config.MONGO_URL || 'mongodb://db.vagrant.dev:27017/daisy';
 const port = config.PORT || 3000;
 const app = express();
 
@@ -19,10 +18,10 @@ require('./config/express')(app);
 
 // Open database connection, handlers, and open the app
 db.sequelize.sync().then(function() {
-	app.listen(port, function(err) {
-		if (err) throw err;
-		console.log('Now listening on port %s!', port);
-	});
+  app.listen(port, function(err) {
+    if (err) throw err;
+    console.log('Now listening on port %s!', port);
+  });
 }).catch(function(err){
-	console.log(err);
+  console.log(err);
 });
