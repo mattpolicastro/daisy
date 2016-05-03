@@ -1,8 +1,7 @@
-'use strict';
-/*
- * ~Daisy~
+/* ~Daisy~
  * Borrows liberally from https://github.com/madhums/node-express-mongoose-demo/
  */
+'use strict';
 
 const express = require('express');
 const db = require(__dirname + '/models');

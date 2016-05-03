@@ -16,8 +16,6 @@ const sequelize = new Sequelize(
 );
 var db = {};
 
-console.log(__dirname)
-
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (file.indexOf('.') !== 0) && (file !== 'index.js');

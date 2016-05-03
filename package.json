@@ -18,10 +18,11 @@
     "sequelize": "^3.19.3"
   },
   "devDependencies": {
+    "connect-livereload": "^0.5.4",
     "eslint": "^2.8.0",
     "eslint-plugin-html": "^1.4.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-express": "^1.4.1",
+    "grunt-express-server": "^0.5.3",
     "grunt-sass": "^1.1.0"
   },
   "scripts": {

@@ -3,29 +3,34 @@ module.exports = function(grunt) {
     watch: {
       all: {
         options: { livereload: true },
-        files: ['~/node_modules/**'],
-        tasks: []
+        files: ['!/node_modules/**']
       },
       sass: {
         files: ['**/*.scss'],
         tasks: ['sass']
       }
+      // browserify goes here?
     },
     express: {
-      dev: {
-        server: __dirname + 'app.js'
+      options: {
+        hostname: 'localhost'
       },
-      static: {
+      default: {
         options: {
-          port: 3000,
-          hostname: 'localhost',
-          bases: [
-            'public/',
-            'public/styles'
-          ],
-          livereload: true
+          script: __dirname + '/app.js',
+          node_env: 'DEV'
         }
       }
+      // static: {
+      //   options: {
+      //     port: 3000,
+      //     hostname: 'localhost',
+      //     bases: [
+      //       'public/',
+      //       'public/styles'
+      //     ]
+      //   }
+      // }
     },
     sass: {
       dist: {
@@ -39,8 +44,8 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-sass');
   grunt.registerTask('default', 'server');
-  grunt.registerTask('server', ['express:dev', 'watch']);
+  grunt.registerTask('server', ['express:default', 'watch']);
 };

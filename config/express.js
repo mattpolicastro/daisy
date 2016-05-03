@@ -2,7 +2,6 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
-const marked = require('marked');
 const hbscfg = require('./handlebars.js');
 
 module.exports = function(app) {
@@ -15,4 +14,8 @@ module.exports = function(app) {
   app.set('view engine', '.hbs');
   // Enable view caching
   app.enable('view cache');
-}
+  // Livereload
+  if (process.env.NODE_ENV === 'DEV') {
+    app.use(require('connect-livereload')());
+  }
+};
