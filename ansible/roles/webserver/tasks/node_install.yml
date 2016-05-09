@@ -4,7 +4,10 @@
 # apt keys. Background available here:
 # https://github.com/nodesource/distributions#installation-instructions
 - name: fetch nodesource apt_key
-  shell: curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key >> {{ nodesource_key_dest }}
+  get_url:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    dest: '{{ nodesource_key_dest }}'
+    force: yes
   register: apt_key_fetch
 - name: add nodesource apt_key
   shell: apt-key add {{ nodesource_key_dest }}
