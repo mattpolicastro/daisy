@@ -1,5 +1,5 @@
 node_modules/*
-public/.sass-cache/*
+*.sass-cache/*
 *.retry
 .vagrant
-config/config.js
+*config/config.js
