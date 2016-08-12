@@ -4,10 +4,10 @@
 </div>
 {{#each posts}}
 <div class="post">
-	<div class="container {{type}}">
+	<div class="container {{postType}}">
 		<article class="main writing">
-			<h2><a href="/posts/{{slug}}">{{title}}</a></h2>
-			<time datetime="{{roboDate published}}">{{scriptDate published}}</time>
+			<h2><a href="/posts/{{slug}}">{{summary}}</a></h2>
+			<time datetime="{{roboDate published}}">{{scriptDate createdAt}}</time>
 			{{marked content}}
 		</div>
 	</div>
