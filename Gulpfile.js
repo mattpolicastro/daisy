@@ -1,28 +1,48 @@
+// Borrows heavily: https://github.com/sogko/gulp-recipes/blob/master/browser-sync-nodemon-expressjs/gulpfile.js
+'use strict';
+
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 const bs = require('browser-sync');
 
+const BS_DELAY = 750;
 
+gulp.task('nodemon', (next) => {
+  let called = false;
 
-// http://stackoverflow.com/questions/28048029/running-a-command-with-gulp-to-start-node-js-server
-gulp.task('server', function() {
-  const bSync = bs.create();
-
-  nodemon({
+  return nodemon({
     script: 'src/app.js',
-    watch: ['src/app.js', 'src/config/*', 'src/models/*', 'src/routes/*', 'src/views/*/**'],
+    watch: ['src/app.js', 'src/config/*', 'src/models/*', 'src/routes/*', 'src/views/*'],
     ext: 'js hbs',
     env: { 'NODE_ENV': 'development' }
   }).on('start', () => {
-    bSync.notify('Nodemon restarted');
-    bSync.reload();
+    if (!called) next();
+    called = true;
+  }).on('restart', () => {
+    bs.notify('Restarting nodemon');
+    setTimeout(() => {
+      bs.reload();
+    }, BS_DELAY);
   });
 });
 
+gulp.task('bs', ['nodemon'], () => {
+  bs({
+    browser: 'safari technology preview',
+    notify: false,
+    proxy: 'http://localhost:3000',
+    port: 4000
+  });
+});
+
+gulp.task('bs-reload', () => {
+  bs.reload();
+});
+
 gulp.task('compile-sass', () => {
-  let input = './stylesheets/**/*.scss';
-  let output = './public/css';
+  let input = 'src/public/**/*.scss';
+  let output = 'src/public/css';
   return gulp
     // Find all `.scss` files from the `stylesheets/` folder
     .src(input)
@@ -32,4 +52,6 @@ gulp.task('compile-sass', () => {
     .pipe(gulp.dest(output));
 });
 
-gulp.task('default', ['server']);
+gulp.task('default', ['bs'], () => {
+  gulp.watch('src/public/sass/*', ['compile-sass', 'bs-reload']);
+});
