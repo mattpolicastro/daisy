@@ -1,22 +1,25 @@
 'use strict';
 
 const router = require('express').Router();
-const mongoose = require('mongoose');
-const blogSchema = require('../models/blogSchema.js');
+const db = require(__dirname + '/../models');
 
-const Blog = mongoose.model('Blog', blogSchema);
-
-router.get('/', function(req, res) {
-  Blog.find().sort('-editDate').exec((err, posts) => {
-    if (err) res.status(500).send(new Error(err));
-    res.render('posts/index', {title: 'Posts', posts: posts});
+router.get('/', (req, res) => {
+  let offset = req.query.page * 10 || 0;
+  db.post.findAll({
+    attributes: ['slug', 'summary', 'postType', 'createdAt'],
+    where: { status: 'published' },
+    limit: 10,
+    offset
+  }).then((posts) => {
+    res.render('posts', {posts, offset});
   });
 });
 
-router.get('/:slug', function(req, res) {
-  Blog.findOne({slug: req.params.slug}, {limit: 1}, function(err, post) {
-    if (err) res.status(500).send(new Error(err));
-    res.render('posts/postPage');
+router.get('/:slug', (req, res) => {
+  db.post.findOne({
+    where: { slug: req.params.slug }
+  }).then((post) => {
+    res.render('posts/post', {post});
   });
 });
 
