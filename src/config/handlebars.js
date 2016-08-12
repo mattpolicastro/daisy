@@ -30,6 +30,6 @@ module.exports = {
     }
   },
   // Define the special dirs for layouts and partials
-  layoutsDir: 'views/hbs-layouts',
-  partialsDir: 'views/hbs-partials'
+  layoutsDir: 'src/views/hbs-layouts',
+  partialsDir: 'src/views/hbs-partials'
 };
