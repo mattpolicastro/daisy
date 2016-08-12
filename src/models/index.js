@@ -1,27 +1,41 @@
 /* Borrows heavily from the sequelize sample express app:
- * https://github.com/sequelize/express-example/blob/59b589b9c80a7c748433fd8161fb61d75828da9f/models/index.js
+ * https://github.com/sequelize/express-example/blob/59b589b9c80a7c748433fd8161fb61d75828da9f/
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('Sequelize');
+const dbConfig = require(__dirname + '/../config').db;
 
-const config = require('../config/config');
 const sequelize = new Sequelize(
-  config.db.database,
-  config.db.username,
-  config.db.password,
-  config.db.options
-);
-var db = {};
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password, {
+    host: dbConfig.host,
+    dialect: dbConfig.dialect
+  });
 
+// Check authentication to db
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch((err) => {
+    console.log('Unable to connect to the database:', err);
+  });
+
+// Create mounting object for models and methods
+let db = {};
+
+// Loop through available models and mount them
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (file.indexOf('.') !== 0) && (file !== 'index.js');
   })
   .forEach(function(file) {
-    var model = sequelize.import(path.join(__dirname, file));
+    let model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 
