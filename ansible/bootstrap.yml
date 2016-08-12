@@ -2,12 +2,12 @@
 # Create new user account using root
 - name: bootstrap ssh
   hosts: '{{ hosts }}'
-  remote_user: '{{ ssh_root_user }}'
+  become_user: '{{ ssh_root_user }}'
   become: yes
   tasks:
-    - debug: msg="The current user is {{ ansible_user }}, {{ ansible_env.USER }}, {{ ansible_user_id }}"
-    - fail: msg="'ssh_new_user' is undefined"
-      when: ssh_new_user is undefined
+    # - debug: msg="The current user is {{ ansible_user }}"
+    # - fail: msg="'ssh_new_user' is undefined"
+    #   when: ssh_new_user is undefined
     - name: create user account ({{ ssh_new_user }})
       user: name={{ ssh_new_user }} shell=/bin/bash groups=sudo password={{ ssh_new_user_password }}
       when: ssh_new_user is defined

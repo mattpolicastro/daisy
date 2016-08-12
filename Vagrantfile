@@ -6,9 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "bootstrap", type: "ansible" do |ansible|
     ansible.ask_vault_pass = true
     ansible.extra_vars = {
-      hosts: "all",
-      # Force vagrant on first ssh to box
-      ansible_user: "vagrant"
+      hosts: "all"
     }
     ansible.playbook = "ansible/bootstrap.yml"
     ansible.raw_arguments = ["--extra-vars=@ansible/config.json"]
@@ -18,7 +16,7 @@ Vagrant.configure(2) do |config|
     web.landrush.enabled = true
     web.ssh.insert_key = "false"
 
-    web.vm.box = "ubuntu/trusty64"
+    web.vm.box = "geerlingguy/ubuntu1604"
     web.vm.hostname = "web.vagrant.dev"
     web.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
@@ -40,7 +38,7 @@ Vagrant.configure(2) do |config|
     db.landrush.enabled = true
     db.ssh.insert_key = "false"
 
-    db.vm.box = "ubuntu/trusty64"
+    db.vm.box = "geerlingguy/ubuntu1604"
     db.vm.hostname = "db.vagrant.dev"
     db.vm.provider "virtualbox" do |vb|
       vb.memory = "512"

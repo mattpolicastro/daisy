@@ -1,5 +1,6 @@
 ---
 - name: create {{ postgres_db_name }} database
+  become: yes
   postgresql_db:
     name: '{{ postgres_db_name }}'
     login_user: '{{ postgres_admin_user }}'

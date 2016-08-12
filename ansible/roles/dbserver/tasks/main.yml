@@ -6,7 +6,7 @@
     update_cache: yes
     cache_valid_time: '{{ apt_cache_time }}'
 - name: install postgres
-  include: postgres_install.yml
+  include: postgres_01_install.yml
   register: postgres_install
 - name: create {{ postgres_app_user }} system user
   user: name={{ postgres_app_user }} shell=/bin/bash password={{ postgres_app_user_password }}
@@ -14,5 +14,5 @@
 - name: config postgres
   # become: yes
   # become_user: '{{ postgres_admin_user }}'
-  include: postgres_config.yml
+  include: postgres_02_config.yml
   register: postgres_config
