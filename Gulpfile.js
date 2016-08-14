@@ -6,7 +6,7 @@ const sass = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 const bs = require('browser-sync');
 
-const BS_DELAY = 750;
+const BS_DELAY = 1000;
 
 gulp.task('nodemon', (next) => {
   let called = false;
