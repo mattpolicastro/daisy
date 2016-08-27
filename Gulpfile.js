@@ -6,7 +6,7 @@ const sass = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 const bs = require('browser-sync');
 
-const BS_DELAY = 1000;
+const BS_DELAY = 1500;
 
 gulp.task('nodemon', (next) => {
   let called = false;
@@ -17,7 +17,9 @@ gulp.task('nodemon', (next) => {
     ext: 'js hbs',
     env: { 'NODE_ENV': 'development' }
   }).on('start', () => {
-    if (!called) next();
+    if (!called) { setTimeout(() => {
+      next();
+    }, BS_DELAY); }
     called = true;
   }).on('restart', () => {
     bs.notify('Restarting nodemon');
@@ -41,14 +43,11 @@ gulp.task('bs-reload', () => {
 });
 
 gulp.task('compile-sass', () => {
-  let input = 'src/public/**/*.scss';
+  let input = 'src/public/sass/*.scss';
   let output = 'src/public/css';
   return gulp
-    // Find all `.scss` files from the `stylesheets/` folder
     .src(input)
-    // Run Sass on those files
     .pipe(sass())
-    // Write the resulting CSS in the output folder
     .pipe(gulp.dest(output));
 });
 
