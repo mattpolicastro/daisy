@@ -4,6 +4,8 @@
   hosts: '{{ hosts }}'
   become_user: '{{ ssh_root_user }}'
   become: yes
+  tags:
+    - basics
   tasks:
     # - debug: msg="The current user is {{ ansible_user }}"
     # - fail: msg="'ssh_new_user' is undefined"

@@ -1,6 +1,5 @@
 ---
 - name: create {{ postgres_db_name }} database
-  become: yes
   postgresql_db:
     name: '{{ postgres_db_name }}'
     login_user: '{{ postgres_admin_user }}'
@@ -9,4 +8,17 @@
   postgresql_user:
     db: '{{ postgres_db_name }}'
     name: '{{ postgres_app_user }}'
+    password: '{{ postgres_app_user_password }}'
+    priv: ALL
   when: app_system_user | success
+- name: reduce {{ postgres_app_user }} postgres privileges
+  postgresql_user:
+    name: '{{ postgres_app_user }}'
+    role_attr_flags: NOSUPERUSER,NOCREATEDB
+- name: remove all other users from the database
+  postgresql_privs:
+    db: '{{ postgres_db_name }}'
+    role: PUBLIC
+    type: database
+    priv: all
+    state: absent

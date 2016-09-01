@@ -1,18 +1,16 @@
+# Selections from https://github.com/ansible/ansible-examples/blob/master/language_features/postgresql.yml
 ---
-- name: install psycopg2
-  apt:
-    name: python-psycopg2
-    state: present
-    update_cache: yes
-    cache_valid_time: '{{ apt_cache_time }}'
 - name: install postgres
   include: postgres_01_install.yml
   register: postgres_install
 - name: create {{ postgres_app_user }} system user
-  user: name={{ postgres_app_user }} shell=/bin/bash password={{ postgres_app_user_password }}
+  user:
+    name: '{{ postgres_app_user }}'
+    shell: /bin/bash
+    password: '{{ postgres_app_user_password }}'
   register: app_system_user
 - name: config postgres
-  # become: yes
-  # become_user: '{{ postgres_admin_user }}'
+  become_user: '{{ postgres_admin_user }}'
   include: postgres_02_config.yml
+  when: app_system_user | success
   register: postgres_config
