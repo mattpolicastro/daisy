@@ -105,9 +105,10 @@ footer {
 }
 
 .lede {
-	text-align: right;
 	padding: 1.5em 0 2.5em;
 	* {
+		text-align: center;
+		float: center;
 		margin: -($spacing / 2) 0;
 	}
 	h1 {
