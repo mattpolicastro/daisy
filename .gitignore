@@ -1,3 +1,7 @@
 node_modules/*
-public/.sass-cache/*
+npm-debug.log
+*.sass-cache/*
+*.retry
 .vagrant
+src/config/index.js
+src/public/css/index.*

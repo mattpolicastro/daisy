@@ -1,15 +1,20 @@
 # Daisy
 
-A blog that posts to and reads from other places. It's written in Node.js and uses MongoDB. 
+A blog that posts to and reads from other places. Built on Node.js/Express and PostgreSQL.
 
 ## In Progress
 
-Daisy is still pretty much non-functional, but things in progress:
+Daisy can display content in a pretty minimal fashion, but things in progress:
 
-* Solidifying schema definitions (whether all posts should live in one collection, or separate collections)
-* Auth/admin for post creation and admin
+* Figure out database models
+	* Currently, one table ("Posts") with enumerated types, common fields for post lists, and JSON to handle the body/content
+	* A general collection of custom/one-off pages (e.g. a bio page)?
+* Polish Vagrant/Ansible configs for testing/deployment
+* Styles and typography
 
 ## To Do
 
-* Add Twitter posting
-* Add Tumblr posting
+* Auth/admin for post creation and admin
+* Add Twitter integration
+* Add Tumblr integration
+* Add Snippets integration (eventually)

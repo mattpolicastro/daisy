@@ -1,0 +1,9 @@
+---
+- name: bootstrap dbservers
+  hosts: dbservers
+  become: yes
+  become_user: '{{ ssh_root_user }}'
+  pre_tasks:
+    - debug: msg="The current user is {{ ansible_user }}, {{ ansible_env.USER }}, {{ ansible_user_id }}"
+  roles:
+    - dbserver

@@ -1,0 +1,19 @@
+---
+- name: update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: '{{ apt_cache_time }}'
+- name: install postgres and other packages
+  apt:
+    name: '{{item}}'
+    state: present
+  with_items:
+    - python-psycopg2
+    - postgresql
+    - postgresql-contrib
+    - libpq-dev
+- name: make sure postgresql service is up
+  service:
+    name: postgresql
+    state: started
+    enabled: yes

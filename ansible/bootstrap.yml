@@ -1,0 +1,29 @@
+---
+# Create new user account using root
+- name: bootstrap ssh
+  hosts: '{{ hosts }}'
+  become_user: '{{ ssh_root_user }}'
+  become: yes
+  tags:
+    - basics
+  tasks:
+    # - debug: msg="The current user is {{ ansible_user }}"
+    # - fail: msg="'ssh_new_user' is undefined"
+    #   when: ssh_new_user is undefined
+    - name: create user account ({{ ssh_new_user }})
+      user: name={{ ssh_new_user }} shell=/bin/bash groups=sudo password={{ ssh_new_user_password }}
+      when: ssh_new_user is defined
+      register: create_ssh_new_user
+    - name: add ssh key ({{ ssh_new_user }})
+      authorized_key: user={{ ssh_new_user }} key="{{ lookup('file', ssh_config_pubkey) }}"
+      when: create_ssh_new_user|success and ssh_config_pubkey is defined
+      register: ssh_pub_key_added
+
+# Check configurations
+- name: secure root and ssh
+  hosts: '{{ hosts }}'
+  become: yes
+  pre_tasks:
+    - debug: msg="The current user is {{ ansible_user }}, {{ ansible_env.USER }}, {{ ansible_user_id }}"
+  roles:
+    - common
