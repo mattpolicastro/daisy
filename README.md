@@ -10,7 +10,8 @@ Daisy can display content in a pretty minimal fashion, but things in progress:
 	* Currently, one table ("Posts") with enumerated types, common fields for post lists, and JSON to handle the body/content
 	* A general collection of custom/one-off pages (e.g. a bio page)?
 * Polish Vagrant/Ansible configs for testing/deployment
-* Styles and typography
+* Build out templates for homepage and new posts list
+* General styles and typography
 
 ## To Do
 
@@ -18,3 +19,4 @@ Daisy can display content in a pretty minimal fashion, but things in progress:
 * Add Twitter integration
 * Add Tumblr integration
 * Add Snippets integration (eventually)
+* Fix RSS integration after new post formats have settled
