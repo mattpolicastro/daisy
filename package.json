@@ -21,5 +21,6 @@
     "gulp-sass": "^2.3.2"
   },
   "author": "Matt Policastro",
+  "repository": "https://github.com/mattpolicastro/daisy",
   "license": "ISC"
 }
