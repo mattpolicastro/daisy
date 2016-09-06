@@ -1,7 +1,7 @@
 # Selections from https://github.com/ansible/ansible-examples/blob/master/language_features/postgresql.yml
 ---
 - name: install postgres
-  include: postgres_01_install.yml
+  include: 01_postgres_install.yml
   register: postgres_install
 - name: create {{ postgres_app_user }} system user
   user:
@@ -11,6 +11,6 @@
   register: app_system_user
 - name: config postgres
   become_user: '{{ postgres_admin_user }}'
-  include: postgres_02_config.yml
+  include: 02_postgres_config.yml
   when: app_system_user | success
   register: postgres_config
