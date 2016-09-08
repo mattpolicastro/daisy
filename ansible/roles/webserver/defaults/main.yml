@@ -1,3 +1,4 @@
 ---
 nodejs_version: "6.x"
 nodesource_key_dest: /tmp/nodesource.key
+app_bundle_name: daisy_app.tar.gz

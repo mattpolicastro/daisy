@@ -2,6 +2,7 @@
 # https://github.com/nodesource/distributions#manual-installation
 # Also, as SNI is wonky in the guest's python install, using shell to add the
 # apt keys. Background available here:
+---
 - name: fetch nodesource apt_key
   get_url:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key

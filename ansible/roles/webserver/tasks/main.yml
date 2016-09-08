@@ -2,3 +2,6 @@
 - name: install node.js + npm
   include: 01_node_install.yml
   register: node_install
+- name: setup the node app
+  include: 02_node_app_setup.yml
+  register: node_setup
