@@ -10,7 +10,7 @@ const bs = require('browser-sync');
 
 const BS_DELAY = 1500;
 
-gulp.task('nodemon', (next) => {
+gulp.task('nodemon', () => {
   return nodemon({
     script: 'src/app.js',
     watch: ['src/app.js', 'src/config/*', 'src/models/*', 'src/routes/*', 'src/views/*'],
