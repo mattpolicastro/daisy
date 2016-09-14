@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
         "--extra-vars=@ansible/config.json"
       ]
     end
-    web.vm.synced_folder ".", "/vagrant"
+    web.vm.synced_folder ".", "/tmp/daisy"
   end
 
   config.vm.define "db" do |db|
@@ -57,6 +57,5 @@ Vagrant.configure(2) do |config|
         "--extra-vars=@ansible/config.json"
       ]
     end
-    db.vm.synced_folder ".", "/vagrant", disabled: true
   end
 end

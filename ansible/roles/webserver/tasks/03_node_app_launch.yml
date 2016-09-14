@@ -1,0 +1,19 @@
+---
+- name: whoami
+  shell: whoami
+  register: whoami
+- name: test user
+  debug: msg={{ whoami.stdout_lines }}
+  # Forever + node.js taken/modified from:
+  # http://www.jeffgeerling.com/blog/start-nodejs-app-with-forever-and-ansible
+- name: check list of running node.js apps
+  command: forever list
+  register: forever_list
+  changed_when: false
+- name: print running node.js apps
+  debug: msg={{ forever_list.stdout_lines }}
+- name: start node.js app
+  command: forever start {{ app_install_dir }}/src/app.js
+  environment:
+    prod: true
+  when: "forever_list.stdout.find('{{ app_install_dir }}/src/app.js') == -1"

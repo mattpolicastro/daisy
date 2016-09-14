@@ -1,4 +1,12 @@
 ---
 - name: install node.js + npm
-  include: node_install.yml
+  include: 01_node_install.yml
   register: node_install
+- name: setup the node app
+  include: 02_node_app_setup.yml
+  register: node_setup
+  when: node_install|success
+# - name: start and manage the node app
+#   become_user: "{{ node_app_user }}"
+#   include: 03_node_app_launch.yml
+#   when: node_setup|success

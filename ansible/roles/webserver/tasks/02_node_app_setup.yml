@@ -1,0 +1,41 @@
+---
+- name: create system user for node app
+  user:
+    name: '{{ node_app_user }}'
+    shell: /bin/bash
+    password: '{{ node_app_user_password }}'
+  register: app_system_user
+- name: bundle the app files
+  local_action:
+    module: archive
+    path:
+      - ../app.js
+      - ../Gulpfile.js
+      - ../package.json
+      - ../src/
+    dest: ./{{ app_bundle_name }}
+  register: app_bundled
+- name: create bundle destination
+  file: path={{ app_install_dir }} state=directory
+  register: dest_created
+- name: unpack the app bundle
+  unarchive:
+    src: ./{{ app_bundle_name }}
+    dest: '{{ app_install_dir }}'
+    owner: '{{ node_app_user }}'
+    list_files: yes
+  when: dest_created|success and app_bundled|success
+- name: remove the local bundle
+  local_action:
+    module: file
+    path: ./{{ app_bundle_name }}
+    state: absent
+# Forever + node.js taken/modified from:
+# http://www.jeffgeerling.com/blog/start-nodejs-app-with-forever-and-ansible
+# - name: install forever for managing node.js apps
+#   npm:
+#     name: forever
+#     global: yes
+#     state: present
+# - name: install required npm packages
+#   npm: path={{ app_install_dir }}

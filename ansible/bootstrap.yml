@@ -18,6 +18,12 @@
       authorized_key: user={{ ssh_new_user }} key="{{ lookup('file', ssh_config_pubkey) }}"
       when: create_ssh_new_user|success and ssh_config_pubkey is defined
       register: ssh_pub_key_added
+    - name: copy logout script
+      copy:
+        src: ./bebop.sh
+        dest: /home/{{ ssh_new_user }}/.bebop.sh
+    - name: enable loguout script
+      shell: echo '. ~/.bebop.sh; sleep 2' > /home/{{ ssh_new_user }}/.bash_logout
 
 # Check configurations
 - name: secure root and ssh

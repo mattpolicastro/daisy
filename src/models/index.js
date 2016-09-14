@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 const dbConfig = require(__dirname + '/../config').db;
 
 const sequelize = new Sequelize(
