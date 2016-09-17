@@ -8,15 +8,15 @@ module.exports = function(sequelize, DataTypes) {
     salt: DataTypes.STRING
   },{
     hooks: {
-      beforeCreate: (user, options, done) => {
+      beforeCreate: (user, options, next) => {
         // Leaving this at the default of 10 rounds
         bcrypt.genSalt((err, salt) => {
-          if (err) return done(err);
+          if (err) return next(err);
           user.salt = salt;
           bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return done(err);
+            if (err) return next(err);
             user.password = hash;
-            done(null, user);
+            next(null, user);
           });
         });
       }
