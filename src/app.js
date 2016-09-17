@@ -14,8 +14,8 @@ const app = express();
 
 // Configure the app
 require('./config/express')(app);
-require('./config/routes')(app);
 require('./config/passport')(app);
+require('./config/routes')(app);
 
 // Open database connection, handlers, and open the app
 db.sequelize.sync(

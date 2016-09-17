@@ -8,7 +8,6 @@ router.get('/signup', (req, res) => {
   res.render('auth/signup');
 });
 router.post('/signup', (req, res) => {
-  console.log(req.body);
   User.findOrCreate({
     where: { username: req.body.username },
     defaults: { password: req.body.password }
@@ -27,7 +26,7 @@ router.get('/login', (req, res) => {
   res.render('auth/login');
 });
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/admin',
   failureRedirect: '/admin/login'
 }));
 

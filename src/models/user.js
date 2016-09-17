@@ -1,8 +1,6 @@
 'use strict';
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10;
-
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     username: DataTypes.STRING,
@@ -11,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
   },{
     hooks: {
       beforeCreate: (user, options, done) => {
+        // Leaving this at the default of 10 rounds
         bcrypt.genSalt((err, salt) => {
           if (err) return done(err);
           user.salt = salt;
@@ -23,10 +22,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
-      validPassword: (password) => {
-        console.log(`incoming password: ${password}`);
-        console.log(`existing password: ${this.password}`);
-        return (password === this.password);
+      validPassword: function(password) {
+        let hash = bcrypt.hashSync(password, this.salt);
+        return (hash === this.password);
       }
     }
   });
