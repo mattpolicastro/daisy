@@ -2,6 +2,8 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const hbscfg = require('./handlebars');
 
 module.exports = (app) => {
@@ -13,6 +15,16 @@ module.exports = (app) => {
   app.engine('.hbs', hbs.engine);
   app.set('view engine', '.hbs');
   app.set('views', 'src/views');
+
   // Enable view caching
   app.enable('view cache');
+
+  // Enable sessions
+  app.use(session({
+    secret: 'banana',
+    resave: false,
+    saveUninitialized: false
+  }));
+
+  app.use(bodyParser.urlencoded({ extended: true }));
 };
