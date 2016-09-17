@@ -4,8 +4,12 @@ const router = require('express').Router();
 const passport = require('passport');
 const User = require('../models').user;
 
+router.get('/', (req, res) => {
+  res.render('admin', { messages: req.flash('success')});
+});
+
 router.get('/signup', (req, res) => {
-  res.render('auth/signup');
+  res.render('admin/signup');
 });
 router.post('/signup', (req, res) => {
   User.findOrCreate({
@@ -23,11 +27,13 @@ router.post('/signup', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('auth/login');
+  res.render('admin/login', { messages: req.flash('error')});
 });
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/admin',
-  failureRedirect: '/admin/login'
+  successFlash: 'Welcome back!',
+  failureRedirect: '/admin/login',
+  failureFlash: 'Incorrect username or password.'
 }));
 
 module.exports = router;

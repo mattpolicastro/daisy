@@ -2,6 +2,7 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+const flash = require('connect-flash');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const hbscfg = require('./handlebars');
@@ -26,5 +27,6 @@ module.exports = (app) => {
     saveUninitialized: true
   }));
 
+  app.use(flash());
   app.use(bodyParser.urlencoded({ extended: true }));
 };
