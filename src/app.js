@@ -18,7 +18,10 @@ require('./config/routes')(app);
 require('./config/passport')(app);
 
 // Open database connection, handlers, and open the app
-db.sequelize.sync().then(() => {
+db.sequelize.sync(
+// "toggling" this for the time being
+  // {force: true}
+).then(() => {
   app.listen(port, function(err) {
     if (err) throw err;
     console.log('Now listening on port %s!', port);
