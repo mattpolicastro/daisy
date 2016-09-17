@@ -1,10 +1,9 @@
 'use strict';
 
 const router = require('express').Router();
-const passport = require('passport');
 const User = require('../models').user;
 
-router.get('/', checkAuth, (req, res) => {
+router.get('/', (req, res) => {
   res.render('admin', {
     messages: req.flash('success'),
     authStatus: req.isAuthenticated()
@@ -28,30 +27,5 @@ router.post('/signup', (req, res) => {
     }
   });
 });
-
-router.get('/login', (req, res) => {
-  res.render('admin/login', { messages: req.flash('error')});
-});
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/admin',
-  successFlash: 'Welcome back!',
-  failureRedirect: '/admin/login',
-  failureFlash: 'Incorrect username or password.'
-}));
-
-router.get('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy();
-  res.render('admin/logout');
-});
-
-function checkAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    req.flash('error', 'Please log in to access that page.');
-    res.redirect('/admin/login');
-  }
-}
 
 module.exports = router;
