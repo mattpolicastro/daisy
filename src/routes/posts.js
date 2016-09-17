@@ -1,11 +1,11 @@
 'use strict';
 
 const router = require('express').Router();
-const db = require(__dirname + '/../models');
+const Post = require(__dirname + '/../models').post;
 
 router.get('/', (req, res) => {
   let offset = req.query.page * 10 || 0;
-  db.post.findAll({
+  Post.findAll({
     attributes: ['slug', 'summary', 'postType', 'createdAt'],
     where: { status: 'published' },
     limit: 10,
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:slug', (req, res) => {
-  db.post.findOne({
+  Post.findOne({
     where: { slug: req.params.slug }
   }).then((post) => {
     res.render('posts/post', {post});
