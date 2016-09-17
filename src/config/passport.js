@@ -6,8 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models').user;
 
 passport.use(new LocalStrategy((username, password, done) => {
-  User.findOne({ username: username }).then((err, user) => {
-    if (err) return done(err);
+  User.findOne({ username: username }).then((user) => {
     if (!user) {
       return done(null, false, { message: 'incorrect username' });
     }

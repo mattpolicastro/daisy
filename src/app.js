@@ -18,17 +18,11 @@ require('./config/routes')(app);
 require('./config/passport')(app);
 
 // Open database connection, handlers, and open the app
-db.sequelize
-  .sync({force: (process.env.NODE_ENV === 'development' || false)})
-  .then(() => {
-  // db.post.findAll().then((posts) => {
-  //   console.log(posts);
-  // });
-
-    app.listen(port, function(err) {
-      if (err) throw err;
-      console.log('Now listening on port %s!', port);
-    });
-  }).catch(function(err){
-    console.log(err);
+db.sequelize.sync().then(() => {
+  app.listen(port, function(err) {
+    if (err) throw err;
+    console.log('Now listening on port %s!', port);
   });
+}).catch(function(err){
+  console.log(err);
+});

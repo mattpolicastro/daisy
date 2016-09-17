@@ -22,8 +22,8 @@ module.exports = (app) => {
   // Enable sessions
   app.use(session({
     secret: 'banana',
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
   }));
 
   app.use(bodyParser.urlencoded({ extended: true }));
