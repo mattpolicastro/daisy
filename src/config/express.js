@@ -1,11 +1,17 @@
 'use strict';
 
+const bodyParser = require('body-parser');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 const session = require('express-session');
-const bodyParser = require('body-parser');
+const Store = require('express-sequelize-session')(session.Store);
+
+const db = require('../models');
+const config = require('./');
 const hbscfg = require('./handlebars');
+
+const store = new Store(db.sequelize, 'sessions');
 
 module.exports = (app) => {
   // Add static dir of public files
@@ -22,7 +28,8 @@ module.exports = (app) => {
 
   // Enable sessions
   app.use(session({
-    secret: 'banana',
+    secret: config.session.secret,
+    store: store,
     resave: true,
     saveUninitialized: true
   }));
