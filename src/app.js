@@ -14,20 +14,18 @@ const app = express();
 
 // Configure the app
 require('./config/express')(app);
+require('./config/passport')(app);
 require('./config/routes')(app);
 
 // Open database connection, handlers, and open the app
-db.sequelize
-  .sync({force: (process.env.NODE_ENV === 'development' || false)})
-  .then(() => {
-  // db.post.findAll().then((posts) => {
-  //   console.log(posts);
-  // });
-
-    app.listen(port, function(err) {
-      if (err) throw err;
-      console.log('Now listening on port %s!', port);
-    });
-  }).catch(function(err){
-    console.log(err);
+db.sequelize.sync(
+// "toggling" this for the time being
+  // {force: true}
+).then(() => {
+  app.listen(port, function(err) {
+    if (err) throw err;
+    console.log('Now listening on port %s!', port);
   });
+}).catch(function(err){
+  console.log(err);
+});
