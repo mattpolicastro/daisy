@@ -10,7 +10,6 @@ A blog that posts to and reads from other places. Built on Node.js/Express and P
 
 ## Bugs
 
-* Posts router resolves nonexistent pages
 * /signup sometimes creates two user entries
 
 ## To Do

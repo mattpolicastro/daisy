@@ -15,11 +15,15 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:slug', (req, res) => {
+router.get('/:slug', (req, res, next) => {
   Post.findOne({
     where: { slug: req.params.slug }
   }).then((post) => {
-    res.render('posts/post', {post});
+    if (post) {
+      res.render('posts/post', { post });
+    } else {
+      next();
+    }
   });
 });
 
