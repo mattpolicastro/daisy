@@ -28,10 +28,11 @@ module.exports = (app) => {
 
   // Enable sessions
   app.use(session({
+    saveUninitialized: false,
     secret: config.session.secret,
+    secure: 'auto',
     store: store,
-    resave: true,
-    saveUninitialized: true
+    resave: false
   }));
 
   app.use(flash());
