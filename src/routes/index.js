@@ -9,7 +9,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', (req, res) => {
-  res.render('login', { messages: req.flash('error')});
+  res.render('login', { messages: {
+    error: req.flash('error'),
+    success: req.flash('success')
+  }});
 });
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/admin',
@@ -21,7 +24,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy();
-  res.render('logout');
+  res.render('logout', { user: null });
 });
 
 router.get('/signup', (req, res) => {
@@ -30,14 +33,19 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   User.findOrCreate({
     where: { username: req.body.username },
-    defaults: { password: req.body.password }
-  }).spread((user, created) => {
-    if (created) res.send(`new user created: ${user}`);
-    if (!created && user) {
-      res.send(`found existing: ${user}`);
+    defaults: {
+      password: req.body.password,
+      name: req.body.name
     }
-    if (!created && !user) {
-      res.send('error');
+  }).spread((user, created) => {
+    if (created) {
+      req.flash('success', `New user created: ${user.username}`);
+      res.redirect('/login');
+    } else if (!created && user) {
+      req.flash('error', `Found existing user: ${user.username}`);
+      res.redirect('/login');
+    } else if (!created && !user) {
+      res.status('500').send('error');
     }
   });
 });

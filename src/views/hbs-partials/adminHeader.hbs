@@ -1,0 +1,16 @@
+<nav class="container">
+  <ul>
+    {{#if user.name}}
+    <li>Hi, {{user.name}}.</li>
+    {{else}}
+    <li>Hey stranger.</li>
+    {{/if}}
+    {{#if messages}}
+    <li>{{messages}}</li>
+    {{/if}}
+    <li><a href="/admin">Admin</a></li>
+    <li><a href="/admin/create">Create Post</a></li>
+    <li><a href="/admin/settings">Settings</a></li>
+    <li><a href="/logout">Log Out</a></li>
+  </ul>
+</nav>

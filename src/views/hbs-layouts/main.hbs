@@ -8,18 +8,14 @@
 
 	<script>!function(t,e,n,a,s,o,r,i){n&&(o=n[a],o&&(r=t.createElement("style"),r.innerHTML=o,t.getElementsByTagName("head")[0].appendChild(r)),i=e.setAttribute,e.setAttribute=function(t,r,p,u){"string"==typeof r&&r.match(s)&&(p=new XMLHttpRequest,p.open("GET",r,!0),p.onreadystatechange=function(){4===p.readyState&&(u=p.responseText,u!==o&&(n[a]=u))},p.send(null),e.setAttribute=i,o)||i.apply(this,arguments)})}(document,Element.prototype,localStorage,"tk","//use.typekit.net");
 	</script>
-	<script>
-	  (function(d) {
-	    var config = {
-	      kitId: 'eag7rsb',
-	      scriptTimeout: 3000
-	    },
+	<script>(function(d){var config={kitId: 'eag7rsb',scriptTimeout: 3000},
 	    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
 	  })(document);
 	</script>
 </head>
 <body>
 {{> header}}
+{{#if user}}{{> adminHeader}}{{/if}}
 {{{body}}}
 </body>
 </html>

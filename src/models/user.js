@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    salt: DataTypes.STRING
+    salt: DataTypes.STRING,
+    name: DataTypes.STRING
   },{
     hooks: {
       beforeCreate: (user, options, next) => {

@@ -1,7 +1,11 @@
 <h1>Log In</h1>
-<p>{{messages}}</p>
+{{#if messages.error}}
+<p style="color: red">{{messages.error}}</p>
+{{else if messages.success}}
+<p style="color: green">{{messages.success}}</p>
+{{/if}}
 <form method="post" action="/login" autocomplete="on">
-  <input type="text" name="username" placeholder="Username" autofocus="yes">
-  <input type="text" name="password" placeholder="Password">
-  <input type="submit" value="Submit">
+  <input type="email" name="username" placeholder="Username" autofocus="yes">
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit" value="Log In">
 </form>
