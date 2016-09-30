@@ -5,14 +5,22 @@ const passport = require('passport');
 const User = require('../models').user;
 
 router.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', { title: 'Hi.' });
 });
 
 router.get('/login', (req, res) => {
-  res.render('login', { messages: {
-    error: req.flash('error'),
-    success: req.flash('success')
-  }});
+  if (req.user) {
+    req.flash('success', 'You\'re already logged in!');
+    res.redirect('admin');
+  } else {
+    res.render('login', {
+      title: 'Log In',
+      messages: {
+        error: req.flash('error'),
+        success: req.flash('success')
+      }
+    });
+  }
 });
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/admin',
@@ -24,11 +32,14 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy();
-  res.render('logout', { user: null });
+  res.render('logout', {
+    title: 'Log Out',
+    user: null
+  });
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup', { title: 'Sign Up' });
 });
 router.post('/signup', (req, res) => {
   User.findOrCreate({
