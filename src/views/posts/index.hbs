@@ -3,13 +3,13 @@
 	<p>Regrettable phrasing.</p>
 </section>
 {{#each posts}}
-<div class="post">
-	<div class="container {{postType}}">
+<section class="post">
+	<section class="grid-container {{postType}}">
 		<article class="main writing">
 			<h2><a href="/posts/{{slug}}">{{summary}}</a></h2>
 			<time datetime="{{roboDate published}}">{{scriptDate createdAt}}</time>
 			{{marked content}}
-		</div>
-	</div>
-</div>
+		</article>
+	</section>
+</section>
 {{/each}}
