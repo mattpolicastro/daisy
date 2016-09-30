@@ -1,1 +1,12 @@
-<h1>Settings</h1>
+<section class="grid-container">
+  <h1>Settings</h1>
+  <form autocomplete="on">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Name" value="{{user.name}}" />
+    <label>Username</label>
+    <input type="email" name="username" placeholder="Username" value="{{user.username}}" />
+    <label>About</label>
+    <input type="textarea" name="about" placeholder="Tell the world about yourself." value="{{user.about}}" />
+    <input type="submit" value="Update Profile">
+  </form>
+</section>
