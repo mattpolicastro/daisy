@@ -1,12 +1,12 @@
 'use strict';
 
 const router = require('express').Router();
-const Post = require(__dirname + '/../models').post;
+const Post = require(__dirname + '/../models').Post.scope('posts');
 
 router.get('/', (req, res) => {
   let offset = req.query.page * 10 || 0;
   Post.findAll({
-    attributes: ['slug', 'summary', 'postType', 'createdAt'],
+    attributes: ['slug', 'summary', 'type', 'createdAt'],
     where: { status: 'published' },
     limit: 10,
     offset

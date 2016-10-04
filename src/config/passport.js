@@ -1,7 +1,7 @@
 'use strict';
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models').user;
+const User = require('../models').User;
 
 passport.use(new LocalStrategy((username, password, next) => {
   User.findOne({where: { username: username }}).then((user) => {

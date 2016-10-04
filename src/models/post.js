@@ -1,11 +1,29 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('post', {
+  let Post = sequelize.define('Post', {
     status: DataTypes.ENUM('draft', 'published'),
     slug: DataTypes.STRING,
     summary: DataTypes.STRING,
-    postType: DataTypes.ENUM('blog', 'tweet'),
+    type: DataTypes.ENUM('about', 'blog', 'tweet'),
     contents: DataTypes.JSONB
+  },{
+    scopes: {
+      posts: {
+        where: { type: { $not: 'about' } }
+      },
+      abouts: {
+        where: { type: 'about' }
+      }
+    },
+    classMethods: {
+      associate: function(models) {
+        Post.belongsTo(models.User, {
+          foreignKey: { allowNull: false }
+        });
+      }
+    }
   });
+
+  return Post;
 };

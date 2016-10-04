@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  let User = sequelize.define('User', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     salt: DataTypes.STRING,
@@ -22,6 +22,11 @@ module.exports = function(sequelize, DataTypes) {
         });
       }
     },
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Post);
+      }
+    },
     instanceMethods: {
       validPassword: function(password) {
         let hash = bcrypt.hashSync(password, this.salt);
@@ -29,4 +34,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  return User;
 };
