@@ -6,8 +6,24 @@
     <input type="text" name="name" placeholder="Name" value="{{user.name}}" />
     <label>Username</label>
     <input type="email" name="username" placeholder="Username" value="{{user.username}}" />
-    <label>About</label>
-    <input type="textarea" name="about" placeholder="Tell the world about yourself." value="{{user.about}}" />
+    <label>About You</label>
+    <textarea
+      name="about"
+      placeholder="Tell the world about yourself."
+      value="{{user.about}}"
+      cols=90
+      class="markdown-editor"
+    >{{profile}}</textarea>
     <input type="submit" value="Update Profile">
+  </form>
+  <h2>Password</h2>
+  <form method="post" action="/admin/settings/password">
+    <label>Current password</label>
+    <input type="password" name="old-password" placeholder="Your current password"/>
+    <label>New password</label>
+    <input type="password" name="new-password" placeholder="Your new password" />
+    <label>Confirm new password</label>
+    <input type="password" name="confirm-password"  placeholder="Confirm your new password"/>
+    <input type="submit" value="Change password" />
   </form>
 </section>
