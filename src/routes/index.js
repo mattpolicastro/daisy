@@ -14,11 +14,7 @@ router.get('/login', (req, res) => {
     res.redirect('admin');
   } else {
     res.render('login', {
-      title: 'Log In',
-      messages: {
-        error: req.flash('error'),
-        success: req.flash('success')
-      }
+      title: 'Log In'
     });
   }
 });

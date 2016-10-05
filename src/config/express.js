@@ -36,8 +36,13 @@ module.exports = (app) => {
   }));
 
   app.use(flash());
+  // Make the user and flash messages available to page templates
   app.use((req, res, next) => {
     res.locals.user = req.user;
+    res.locals.messages = {
+      success: req.flash('success'),
+      error: req.flash('error')
+    };
     next();
   });
   app.use(bodyParser.urlencoded({ extended: true }));

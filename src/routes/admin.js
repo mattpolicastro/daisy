@@ -3,10 +3,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  res.render('admin', {
-    messages: req.flash('success'),
-    authStatus: req.isAuthenticated()
-  });
+  res.render('admin');
 });
 
 router.get('/settings', (req, res) => {
