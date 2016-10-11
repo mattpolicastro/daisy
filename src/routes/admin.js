@@ -40,6 +40,8 @@ router.post('/settings/profile', (req, res) => {
     }).catch((err) => {
       res.status(500).send(err);
     });
+  } else {
+    res.status(400).send('Missing request body');
   }
 });
 
