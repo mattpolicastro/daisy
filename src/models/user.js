@@ -3,22 +3,39 @@ const bcrypt = require('bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING,
-    name: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
+    },
+    name: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    salt: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },{
     hooks: {
-      beforeCreate: (user, options, next) => {
-        // Leaving this at the default of 10 rounds
-        bcrypt.genSalt((err, salt) => {
-          if (err) return next(err);
-          user.salt = salt;
-          bcrypt.hash(user.password, salt, (err, hash) => {
+      beforeValidate: function(user, opts, next) {
+        if (typeof user.get('salt') === 'undefined') {
+          bcrypt.genSalt((err, salt) => {
             if (err) return next(err);
-            user.password = hash;
-            next(null, user);
+            user.set('salt', salt);
+            next(null, opts);
           });
+        }
+      },
+      beforeCreate: function(user, options, next) {
+        console.log(user);
+        bcrypt.hash(user.get('password'), user.get('salt'), (err, hash) => {
+          if (err) return next(err);
+          user.set('password', hash);
+          next(null, user);
         });
       }
     },
@@ -28,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
-      validPassword: function(password) {
+      passwordCheck: function(password) {
         let hash = bcrypt.hashSync(password, this.salt);
         return (hash === this.password);
       }
