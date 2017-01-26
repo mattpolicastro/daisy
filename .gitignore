@@ -1,7 +1,9 @@
 node_modules/*
 npm-debug.log
+*.anscombe
 *.sass-cache/*
 *.retry
+*.Rhistory
 *.tar.gz
 .vagrant
 src/config/index.js

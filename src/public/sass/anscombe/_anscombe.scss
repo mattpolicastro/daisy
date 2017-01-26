@@ -1,0 +1,143 @@
+/*
+Approach to animating with relative sizing detailed here:
+http://stackoverflow.com/questions/21557476/how-to-use-transformtranslatex-to-move-a-child-element-horizontally-100-across
+*/
+$anscombe_height: 8em;
+$anscombe_width: 4em;
+$anscombe_el_size: min($anscombe_height, $anscombe_width) / 8;
+
+.anscombe {
+  position: relative;
+  height: $anscombe_height;
+  width: $anscombe_width;
+}
+.dotwrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dot {
+  animation: inherit;
+  background-color: black;
+  border-radius: 50%;
+  /*position: relative;*/
+  height: $anscombe_el_size;
+  width: $anscombe_el_size;
+}
+/* Following lines are generated from `anscombe generator.R` */
+/* Generator stub */
+.dotwrapper:nth-child(1) {
+	z-index: 1;
+	animation-name: anscombe1;
+}
+.dotwrapper:nth-child(2) {
+	z-index: 2;
+	animation-name: anscombe2;
+}
+.dotwrapper:nth-child(3) {
+	z-index: 3;
+	animation-name: anscombe3;
+}
+.dotwrapper:nth-child(4) {
+	z-index: 4;
+	animation-name: anscombe4;
+}
+.dotwrapper:nth-child(5) {
+	z-index: 5;
+	animation-name: anscombe5;
+}
+.dotwrapper:nth-child(6) {
+	z-index: 6;
+	animation-name: anscombe6;
+}
+.dotwrapper:nth-child(7) {
+	z-index: 7;
+	animation-name: anscombe7;
+}
+.dotwrapper:nth-child(8) {
+	z-index: 8;
+	animation-name: anscombe8;
+}
+.dotwrapper:nth-child(9) {
+	z-index: 9;
+	animation-name: anscombe9;
+}
+.dotwrapper:nth-child(10) {
+	z-index: 10;
+	animation-name: anscombe10;
+}
+.dotwrapper:nth-child(11) {
+	z-index: 11;
+	animation-name: anscombe11;
+}
+@keyframes anscombe1 {
+	20% { transform: translate(-8%, -0.995850622406635%); }
+	40% { transform: translate(-8%, -10.1244813278008%); }
+	60% { transform: translate(-8%, 3.81742738589212%); }
+	80% { transform: translate(-18.6666666666667%, 11.1203319502075%); }
+}
+@keyframes anscombe2 {
+	20% { transform: translate(-18.6666666666667%, 8.04979253112034%); }
+	40% { transform: translate(-18.6666666666667%, -1.82572614107884%); }
+	60% { transform: translate(-18.6666666666667%, 9.5435684647303%); }
+	80% { transform: translate(-18.6666666666667%, 17.9253112033195%); }
+}
+@keyframes anscombe3 {
+	20% { transform: translate(8%, 2.82157676348547%); }
+	40% { transform: translate(8%, -6.80497925311204%); }
+	60% { transform: translate(8%, -40%); }
+	80% { transform: translate(-18.6666666666667%, 1.74273858921163%); }
+}
+@keyframes anscombe4 {
+	20% { transform: translate(-13.3333333333333%, -7.38589211618257%); }
+	40% { transform: translate(-13.3333333333333%, -7.05394190871368%); }
+	60% { transform: translate(-13.3333333333333%, 6.72199170124482%); }
+	80% { transform: translate(-18.6666666666667%, -7.63485477178423%); }
+}
+@keyframes anscombe5 {
+	20% { transform: translate(-2.66666666666666%, -3.40248962655601%); }
+	40% { transform: translate(-2.66666666666666%, -11.1203319502075%); }
+	60% { transform: translate(-2.66666666666666%, 0.91286307053943%); }
+	80% { transform: translate(-18.6666666666667%, -4.56431535269709%); }
+}
+@keyframes anscombe6 {
+	20% { transform: translate(13.3333333333333%, -16.9294605809129%); }
+	40% { transform: translate(13.3333333333333%, -1.49377593360995%); }
+	60% { transform: translate(13.3333333333333%, -7.63485477178423%); }
+	80% { transform: translate(-18.6666666666667%, 7.30290456431536%); }
+}
+@keyframes anscombe7 {
+	20% { transform: translate(-29.3333333333333%, 5.64315352697095%); }
+	40% { transform: translate(-29.3333333333333%, 14.8547717842324%); }
+	60% { transform: translate(-29.3333333333333%, 15.2697095435685%); }
+	80% { transform: translate(-18.6666666666667%, 22.1576763485477%); }
+}
+@keyframes anscombe8 {
+	20% { transform: translate(-40%, 30.3734439834025%); }
+	40% { transform: translate(-40%, 40%); }
+	60% { transform: translate(-40%, 20.9958506224066%); }
+	80% { transform: translate(40%, -38.0082987551867%); }
+}
+@keyframes anscombe9 {
+	20% { transform: translate(2.66666666666666%, -24.2323651452282%); }
+	40% { transform: translate(2.66666666666666%, -10.0414937759336%); }
+	60% { transform: translate(2.66666666666666%, -1.90871369294606%); }
+	80% { transform: translate(-18.6666666666667%, 19.5850622406639%); }
+}
+@keyframes anscombe10 {
+	20% { transform: translate(-24%, 25.7261410788382%); }
+	40% { transform: translate(-24%, 5.47717842323652%); }
+	60% { transform: translate(-24%, 12.448132780083%); }
+	80% { transform: translate(-18.6666666666667%, 0.0829875518672196%); }
+}
+@keyframes anscombe11 {
+	20% { transform: translate(-34.6666666666667%, 18.5892116182573%); }
+	40% { transform: translate(-34.6666666666667%, 26.3900414937759%); }
+	60% { transform: translate(-34.6666666666667%, 18.1742738589212%); }
+	80% { transform: translate(-18.6666666666667%, 8.54771784232366%); }
+}
