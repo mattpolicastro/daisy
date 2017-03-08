@@ -45,6 +45,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
+      passwordHash: function(password) {
+        let hash = bcrypt.hashSync(password, this.salt);
+
+        return hash;
+      },
       passwordCheck: function(password) {
         let hash = bcrypt.hashSync(password, this.salt);
         return (hash === this.password);
